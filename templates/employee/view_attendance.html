@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Logs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CDN for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Employee - Attendance</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h3 class="mb-3">Employee Attendance Logs</h3>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Date</th>
+                    <th>Login Time</th>
+                    <th>Logout Time</th>
+                    <th>Login Location</th>
+                    <th>Logout Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ log.username }}</td>
+                    <td>{{ log.date }}</td>
+                    <td>{{ log.login_time or 'N/A' }}</td>
+                    <td>{{ log.logout_time or 'N/A' }}</td>
+                    <td>{{ log.login_location or 'N/A' }}</td>
+                    <td>{{ log.logout_location or 'N/A' }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">No attendance logs found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/employee/dashboard" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </div>
+
+    <!-- Bootstrap JS (optional, for better UX) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
